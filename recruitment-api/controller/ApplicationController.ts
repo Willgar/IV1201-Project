@@ -94,7 +94,7 @@ function compareCompetences(first_list:any[], second_list:any[]){
 function compareDates(first_list:any[], second_list:any[]){
   const duplicates = first_list.filter(
     function(date:any) {
-      return (date-second_list[0]==0)
+      return (date==second_list[0])
     });
   return (duplicates.length == 0 ? true : false);
 }
