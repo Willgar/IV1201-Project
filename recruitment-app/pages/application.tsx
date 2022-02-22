@@ -21,7 +21,7 @@ export default function Application() {
     return response_data;
   });
   const [users, setUsers] = useState(userData);
-  const applications_per_page = 10;
+  const applications_per_page = 6;
   const [user, setUser] = useState(users[0]);
   const [index, setIndex] = useState(0);
   const [filteredUsers, setFilteredUsers] = useState(
@@ -88,13 +88,13 @@ export default function Application() {
   function listCompetence(i:number[]){
     switch(i[0]){
       case( 1 || "A"): {
-        return "Ticket Sales " + i[1] + " YoE" 
+        return "Ticket Sales " + i[1] + " Years of experience" 
       }
       case 2 || "B": {
-        return "Lotteries " + i[1] + " YoE" 
+        return "Lotteries " + i[1] + " Years of experience" 
       }
       case 3 || "C": {
-        return "Roller Coaster Operation " + i[1] + " YoE" 
+        return "Roller Coaster Operation " + i[1] + " Years of experience" 
       }
       default: {
         return "";
@@ -106,21 +106,17 @@ export default function Application() {
    * Shows full information about the selected user.
    */
   const currentApplication = (
-    <div>
-      <p>
-        Email: {user.email}
-        <br></br>
-      </p>
-      <p>
-        Dates: {user.start.map((comp, i) => <p>{comp} {<br></br>}to{<br></br>} {user.end[i]}</p>)}
-        <br></br>
-      </p>
-
+    <div className="application_page">
       <p>
         Name: {user.name}
-        <br></br>
       </p>
-      <p>Competences: {user.competences.map((comp) => <p>{listCompetence(comp)}</p>)}</p>
+      <p>
+        Email: {user.email}
+      </p>
+      <ul className="application_list">
+        Available dates: {user.start.map((comp: Date[], i: number) => <li className="list_box">{comp} to {user.end[i]}</li>)}
+      </ul>
+      <ul className="application_list">Competences: {user.competences.map((comp: number[]) => <li className="list_box">{listCompetence(comp)}</li>)}</ul>
     </div>
   );
 
@@ -128,9 +124,7 @@ export default function Application() {
     <DefaultPage header="View Applications">
       <div className="applications">
         <ul className="user_list">{listUsers}</ul>
-        <div className="application_page">
-          {currentApplication}
-        </div>
+        {currentApplication}
       </div>
       <div className="user_arrow_box">
         <li className="user_arrow" onClick={prevPage}>Previous Page</li>
