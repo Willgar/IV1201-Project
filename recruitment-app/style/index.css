@@ -227,11 +227,9 @@ label{
   display: flex;
 }
 
-.user_arrow:hover{
+.user_arrow:hover,.user_box:hover{
   background-color: #D63369;
-}
-.user_box:hover{
-  background-color: #D63369;
+  cursor: pointer;
 }
 .about_container{
   justify-content:center;
